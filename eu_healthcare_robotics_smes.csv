@@ -1,0 +1,27 @@
+company,country,sub_domain,website,email,email_type,sme_likely,notes,data_confidence
+CMR Surgical,United Kingdom,Surgical (soft-tissue),https://cmrsurgical.com,,contact_form_only,No,"Versius platform; raised >$1B, unicorn status - likely outgrew SME threshold",medium
+Distalmotion,Switzerland,Surgical (Dexter),https://distalmotion.com,info@distalmotion.com,generic,No,"Raised ~$150M 2024; borderline SME - may exceed EU thresholds",high
+LEM Surgical,Switzerland,Surgical (hard-tissue spine/ortho/ENT),https://lemsurgical.com,info@lemsurgical.com,generic,Yes,"Bern-based; Dynamis system FDA-cleared Apr 2025",high
+eCential Robotics,France,Surgical (spine/ortho navigation+robotics),https://www.ecential-robotics.com,,contact_form_only,Yes,"HQ dual France/Tennessee; French origin (Grenoble)",medium
+Moon Surgical,France,Surgical (laparoscopy assist - Maestro),https://moonsurgical.com,,contact_form_only,Yes,"Paris HQ; partner of BD/medtech ecosystem",medium
+Quantum Surgical,France,Surgical (tumor ablation - Epione),https://www.quantumsurgical.com,info@quantumsurgical.com,generic,Yes,"Montpellier; ~130 employees",high
+Surgitec Robotics,France,Surgical (neurosurg/orthopedic/spine/ENT hard tissue),https://www.surgitec.com,,contact_form_only,Yes,"Early stage; email convention @surgitec.com - guess contact@ if needed",low
+Rob Surgical,Spain,Surgical (Bitrack laparoscopic),https://www.robsurgical.com,,contact_form_only,Yes,"Barcelona area; form-only contact",medium
+Medical Microinstruments (MMI),Italy,Microsurgery (Symani),https://www.mmimicro.com,connect@mmimicro.com,generic,No,"Pisa; well-funded series C+ - borderline SME",high
+Robeauté,France,Neurosurgical microrobotics,https://www.robeaute.com,hello@robeaute.com,generic,Yes,"Paris; raised $28M (2025) for neurosurgical microrobots",high
+Wandercraft,France,Rehabilitation exoskeleton (Atalante X),https://www.wandercraft.eu,,contact_form_only,No,"Raised €64.3M Series D 2025 - likely exceeds SME thresholds",medium
+Wearable Robotics / NEXUM Medical,Italy,Rehabilitation robotics (neuro-motor),https://www.wearable-robotics.com,info@wearable-robotics.com,generic,Yes,"Pisa area (Ghezzano); Series A €5M 2026",high
+IUVO,Italy,Exoskeletons (upper/lower body),https://www.iuvo.company,info@iuvo.company,generic,Yes,"Pontedera; SSSA spin-off; standards leader for wearable robotics",high
+Marsi Bionics,Spain,Pediatric/adult gait exoskeleton,https://www.marsibionics.com,info@marsibionics.com,generic,Yes,"Madrid; funded ~€8.1M",high
+Tendo,Sweden,Upper-limb wearable robotic,https://tendoforpeople.com,,unreachable,Yes,"Malmö; RobotUnion alumni - site currently unreachable, verify separately",low
+Akara Robotics,Ireland,Hospital automation + UV disinfection,https://akara.ai,info@akara.ai,generic,Yes,"Dublin; assistive robots + room sensors",high
+UVD Robots (Blue Ocean Robotics),Denmark,UV-C disinfection autonomous robot,https://uvd.blue-ocean-robotics.com,info@uvd-robots.com,generic,No,"Odense; part of Ecolab since 2022 - parent is large",high
+Enchanted Tools,France,Service robotics (Mirokaï),https://enchanted.tools,,contact_form_only,Yes,"Paris; healthcare/hospitality service robot",medium
+Automata,United Kingdom,Lab automation (LINQ bench),https://automata.tech,,contact_form_only,Yes,"London; raised $40M 2023; clinical diagnostics deployments",medium
+Pharmathek,Italy,Pharmacy automation / robotic dispensing,https://www.pharmathek.com,info@pharmathek.com,generic,Yes,"Verona",high
+Robocath,France,Endovascular robotics (coronary/neurovascular),https://www.robocath.com,,contact_form_only,Yes,"Rouen; R-One system",medium
+Sentante,Lithuania,Endovascular teleoperated robotics,https://sentante.com,info@sentante.com,generic,Yes,"Kaunas; €6M Seed 2023",high
+COVVI,United Kingdom,Upper-limb prosthetics (bionic hand),https://www.covvi.com,,contact_form_only,Yes,"Leeds; Nexus hand",medium
+Open Bionics,United Kingdom,3D-printed bionic limb prosthetics,https://openbionics.com,,contact_form_only,Yes,"Bristol; Hero Arm",medium
+BionIT Labs,Italy,Multi-articulated prosthetic hand (Adam's Hand),https://bionitlabs.com,info@bionitlabs.com,generic,Yes,"Soleto (LE); also pressoffice@, na_sales@",high
+Rejoint,Italy,Orthopedic robotics + 3D-printed personalized knee,https://www.rejoint.eu,,site_down,Yes,"Modena area; AI + 3D printing for TKR - site currently unreachable",low

@@ -1,0 +1,38 @@
+company,country,sub_domain,website,email,email_type,sme_likely,source_url,notes,confidence
+Aether Biomedical,PL,prosthetics,https://www.aetherbiomedical.com,,,Yes,https://robotunion.eu/aether-biomedical-seed-round/,RobotUnion cohort; Zeus multi-articulated bionic hand; Poznan Poland,high
+Life Science Robotics,DK,rehab,https://www.lifescience-robotics.com,,,Yes,https://robotunion.eu/best-robotics-startups-robotunion/,RobotUnion 2nd call; ROBERT lower-limb rehab robot; Aalborg,high
+ROPCA,DK,clinical lab automation,https://ropca.com,,,Yes,https://www.odenserobotics.dk/members/nordic-robotics-systems-aps/,Odense Robotics; ARTHUR RA ultrasound robot CE-marked,high
+Coalescent Mobile Robotics,DK,service/logistics,https://cm-robotics.com,,,Yes,https://www.odenserobotics.dk/speakers/coalescent-mobile-robotics/,Odense Robotics member; hospital/pharma logistics AMRs,high
+Gibotech,DK,service/logistics,https://www.gibotech.dk,,,Yes,https://www.odenserobotics.dk/automation-in-hospitals/,Odense Robotics; hospital AGV & sterilization automation,high
+Meditek,DK,service/logistics,https://meditek.dk,,,unknown,https://www.odenserobotics.dk/networks-mobile-robots-in-healtcare/,Odense/CCR partner; hospital equipment automation JV,medium
+Microsure,NL,surgical,https://microsure.nl,,,Yes,https://www.tue.nl/en/research/research-areas/engineering-health/robotics,TU Eindhoven + Maastricht spin-off; microsurgery robot MUSA,high
+Preceyes,NL,surgical,https://www.preceyes.nl,,,Yes,https://www.tue.nl/en/research/research-institutes/robotics-research/projects/preceyes,TU Eindhoven spin-off; CE-marked ophthalmic surgical robot,high
+Eindhoven Medical Robotics,NL,surgical,https://www.emrobotics.com,,,Yes,https://www.tue.nl/en/research/research-areas/engineering-health/robotics,TU/e tech-transfer; RoboSculpt skull-base surgery robot,medium
+SARA Robotics,NL,assistive/elderly-care,https://sara-robotics.com,info@sara-robotics.com,generic,Yes,https://www.eit.europa.eu/news-events/success-stories/sara-robotics,EIT Digital spin-off of Bright Cape; dementia/care robot,high
+Somnox,NL,assistive,https://somnox.com,,,Yes,https://eithealth.eu/news-article/eit-health-backed-start-up-gets-funds-for-sleeping-robot/,EIT Health; TU Delft spin-off; sleep robot,high
+ABLE Human Motion,ES,rehab/exoskeleton,https://www.ablehumanmotion.com,,,Yes,https://eithealth.eu/news-article/eit-health-supported-able-human-motion-receives-ce-mark/,EIT Health; UPC spin-off; CE-MDR SCI exoskeleton; Barcelona,high
+Cyber Surgery,ES,surgical,https://cyber-surgery.com,,,Yes,https://parke.eus/en/cyber-surgery-creates-the-first-basque-surgical-robot-for-spine-to-reach-hospitals/,Basque surgical robot; ALAYA spine assistant; San Sebastian,high
+MiWEndo Solutions,ES,endoscopy,https://miwendo.com,,,Yes,https://catalonia.com/key-industries-technologies/technologies/robotics-in-catalonia,UPF/HCB/UPC spin-off; microwave endoscopy accessory,high
+Inrobics,ES,rehab/assistive,https://inrobics.com,,,Yes,https://eithealth.eu/news-article/robots-in-medicine-the-robotics-start-ups-making-a-difference-in-healthcare/,UC3M spin-off; NAO-based therapy robot; Madrid,high
+Eodyne Systems,ES,rehab,https://eodynesystems.com,,,Yes,https://eithealth.eu/product-service/rgshome/,UPF/SPECS spin-off; CE Class I RGS neuro-rehab; Barcelona,high
+Gogoa Mobility Robots,ES,rehab/exoskeleton,https://www.gogoa.eu,,,Yes,https://exoskeletonreport.com/exoskeleton-companies-and-organizations-directory/gogoa/,CE-marked HANK lower-limb exoskeleton; Urretxu Basque Country,high
+PAL Robotics,ES,assistive,https://pal-robotics.com,,,unknown,https://pal-robotics.com/robot/tiago/,Barcelona; TIAGo mobile manipulator used in hospital labs,medium
+Arkeobots,ES,assistive/elderly-care,https://arkeobots.com,,,Yes,https://catalonia.com/key-industries-technologies/technologies/robotics-in-catalonia,Catalonia assistive elder-care companion robot,medium
+Mecwins,ES,clinical lab automation,https://mecwins.com,,,Yes,https://www.4yfn.com/exhibitors/35813-eodyne-systems-s-l,CSIC IMN spin-off; Avac plasmonic lab-auto platform; Madrid,medium
+Movendo Technology,IT,rehab,https://www.movendo.technology,,,Yes,https://i-rim.it/en/,Genova; hunova balance/rehab robot FDA Class II,high
+Prensilia,IT,prosthetics,https://www.prensilia.com,,,Yes,https://i-rim.it/en/,SSSA spin-off Pontedera; Mia Hand myoelectric prosthesis,high
+Caranx Medical,FR,surgical,https://www.caranx-medical.com,,,Yes,https://www.massdevice.com/caranx-medical-surgical-robot-software-fda-clearance/,Nice; TaviPilot robot for aortic valve replacement,high
+Ganymed Robotics,FR,surgical,https://www.ganymedrobotics.com,,,Yes,https://projects.research-and-innovation.ec.europa.eu/en/horizon-magazine/robot-assistants-operating-room-promise-safer-surgery,EIC Accelerator; Paris; co-manipulated TKA robot,high
+Axilum Robotics,FR,neurostim,https://www.axilumrobotics.com,,,Yes,https://eu-robotics.net/,Strasbourg; CE+FDA TMS-Robot for transcranial magnetic stim,high
+RB3D,FR,exoskeleton,https://www.rb3d.com,,,Yes,https://exoskeletonreport.com/exoskeleton-companies-and-organizations-directory/rb3d/,French exoskeleton maker; musculoskeletal-injury assistance,medium
+BEC GmbH,DE,surgical,https://www.bec-robotics.com,,,Yes,https://gesundheitstechnologien.ipa.fraunhofer.de/en/our_projects/guidoo.html,Fraunhofer IPA partner; Pfullingen; guidoo biopsy robot,high
+Reactive Robotics,DE,rehab/ICU,https://www.reactive-robotics.com,info@reactive-robotics.com,generic,Yes,https://www.nks-eic-accelerator.de/en/success-story-reactive-robotics-665.php,Munich; EIC Accelerator; VEMOTION ICU mobilization robot,high
+German Bionic,DE,exoskeleton,https://www.germanbionic.com,,,Yes,https://ensun.io/search/exoskeleton/germany,Augsburg; active exoskeletons incl healthcare lifting,medium
+Tyromotion,AT,rehab,https://tyromotion.com,,,Yes,https://eu-robotics.net/,Graz; technology-supported therapy devices (Amadeo Diego),high
+Nanoflex Robotics,CH,endovascular,https://nanoflexrobotics.com,,,Yes,https://www.wysszurich.ch/projects/nanoflex,ETH Zurich/Wyss spin-off; magnetic endovascular robot for stroke,high
+Hocoma,CH,rehab,https://www.hocoma.com,,,No,https://eu-robotics.net/,Volketswil; Lokomat gait rehab; part of DIH (large scale-up),high
+Intento,CH,rehab/neurostim,https://www.intento.ch,,,Yes,https://cnbi.epfl.ch/news/page-121574-en-html/,EPFL spin-off Lausanne; wearable neuroprosthesis for stroke,high
+TWIICE,CH,exoskeleton,https://twiice.ch,,,Yes,https://www.venturelab.swiss/TWIICE,EPFL lower-limb exoskeleton for SCI; Swiss clinical use,medium
+Sensars Neuroprosthetics,CH,neuroprosthesis,https://www.sensars.com,,,Yes,https://eithealth.eu/news-article/sensars-neuroprosthetics-the-future-of-nerve-stimulation/,EPFL spin-off Lausanne; SENSY implantable for diabetic neuropathy,high
+BioServo Technologies,SE,rehab/exoskeleton,https://www.bioservo.com,,,Yes,https://digital-strategy.ec.europa.eu/en/news/bioservo-technologies-gives-humans-robotic-super-strength-cyborgs,KTH/Karolinska spin-off; Carbonhand CE-MDR grip glove,high
+Corin,UK,surgical,https://www.coringroup.com,,,No,https://www.smith-nephew.com/en-gb/health-care-professionals/products/orthopaedics/cori,Cirencester; Apollo/OMNIBotics orthopaedic robot (mid-large),medium

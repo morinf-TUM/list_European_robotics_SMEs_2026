@@ -1,0 +1,82 @@
+company,email,email_type,notes
+Tyromotion,office@tyromotion.com,generic,usa@tyromotion.com also present
+Voxdale,info@voxdale.be,generic,also info@voxdale.nl info@voxdale.de
+Axiles Bionics,info@axilesbionics.com,generic,
+F&P Robotics,info@fp-robotics.com,generic,
+Nanoflex Robotics,info@nanoflexrobotics.com,generic,
+TWIICE,info@twiice.ch,generic,
+Sensars Neuroprosthetics,,contact_form_only,
+Reha Technology,sales@rehatechnology.com,generic,technicalsupport@rehatechnology.com also
+Intento,info@intento.ch,generic,
+YouRehab (Reha Stim Medtec),,unreachable,ECONNREFUSED on repeated fetches
+SurgeonsLab,info@surgeonslab.com,generic,
+CAScination,info@cascination.com,generic,
+EBAMed,,contact_form_only,
+Bearcover,info@bearcover.de,generic,
+Navel Robotics,info@navelrobotics.com,generic,
+AKTORmed,info@aktormed.com,generic,
+Avatera Medical,info@avateramedical.com,generic,Domain is avateramedical.com not avatera.eu
+BEC GmbH (Buck Engineering),,unreachable,ECONNREFUSED on repeated fetches
+Medability,info@medability.de,generic,
+ROPCA,info@ropca.com,generic,
+Coalescent Mobile Robotics,info@cm-robotics.com,generic,
+Gibotech,gibotech@gibotech.dk,generic,service@gibotech.dk also
+Meditek,,unreachable,HTTP 403 on repeated fetches
+PAL Robotics,business@pal-robotics.com,generic,info@pal-robotics.com also
+Arkeobots,,contact_form_only,only personal gmail visible no role email
+Neuroelectrics,,contact_form_only,
+Mecwins,info@mecwins.com,generic,
+MiWEndo Solutions,info@miwendo.com,generic,
+Eodyne Systems,contact@eodyne.com,generic,Domain is eodyne.com; ventas@ soporte@ also
+Gogoa Mobility Robots,info@gogoa.eu,generic,
+Virtualware,,unreachable,HTTP 404 on multiple paths
+Inrobics,info@inrobics.com,generic,support@inrobics.com also
+Robopedics,hola@robopedics.com,generic,
+Cyber Surgery,,contact_form_only,
+Rob Surgical,rss@robsurgical.com,generic,company initials generic address
+CurifyLabs,sales@curifylabs.com,generic,press@ investors@ support@ also
+Caranx Medical,,unreachable,site redirects to carvolix.eu after acquisition
+Robocath,,contact_form_only,
+RB3D,,contact_form_only,
+UroMems,,contact_form_only,
+Axilum Robotics,info@axilumrobotics.com,generic,
+Ganymed Robotics,contact@ganymedrobotics.com,generic,
+Japet Medical Devices,,contact_form_only,
+Enchanted Tools,,contact_form_only,
+SpinEM Robotics,info@spinem-robotics.com,generic,from privacy notice
+Moon Surgical,,contact_form_only,
+Surgitec Robotics,,contact_form_only,
+eCential Robotics,,contact_form_only,
+Extremis Robotics,info@extremis-robotics.com,generic,contact@extremis-robotics.com also
+LinkX Robotics,,contact_form_only,
+Open Bionics,,contact_form_only,
+Automata,hello@automata.tech,generic,
+Rex Bionics,info@rexbionics.com,generic,
+Fundamental Surgery,,unreachable,page blank/empty
+COVVI,,contact_form_only,phone-and-form only
+Co-Robotics,management@corobotics.eu,generic,
+Rejoint,,unreachable,ECONNREFUSED
+Prensilia,info@prensilia.com,generic,
+qbrobotics,,unreachable,HTTP 403 blocks fetchers
+Movendo Technology,info@movendo.technology,generic,applications@ also
+Heaxel,,unreachable,site redirects to unrelated domain ordonnances.org
+Rubedo Sistemos,info@rubedos.com,generic,
+ExoAtlet,mail@exoatlet.com,generic,
+Somnox,info@somnox.com,generic,
+Corbotics,,contact_form_only,
+Microsure,info@microsure.nl,generic,
+Access2Bone,info@access2bone.com,generic,
+Reboocon Bionics,,contact_form_only,explicit no-email policy uses helpdesk form
+Motek Medical,info@motekx.nl,generic,rebranded to Motekx; support@motekx.nl also
+InteSpring,info@intespring.nl,generic,
+Laevo Exoskeletons,info@laevo.nl,generic,domain is laevo.nl not laevo-exoskeletons.com
+Skelex,info@skelex.com,generic,
+Hipermotion,,unreachable,
+Eindhoven Medical Robotics,,contact_form_only,
+DEAM,,unreachable,TLS certificate expired
+Preceyes,,unreachable,TLS certificate issue
+Respinor,mail@respinor.com,generic,
+Aether Biomedical,info@aetherbiomedical.com,generic,
+EGZOTech,office@egzotech.com,generic,bok@ serwis@ sales.international@ also
+Perceive3D,,unreachable,HTTP 503/404
+Tendo,,unreachable,ECONNREFUSED
