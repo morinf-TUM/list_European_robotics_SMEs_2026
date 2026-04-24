@@ -1,9 +1,10 @@
 # Methodology
 
-How the list in `eu_healthcare_robotics_smes_master.csv` was built, so anyone opening this folder later can verify or extend the work.
+How the lists in `eu_healthcare_robotics_smes_master.csv` (pass 1) and `eu_healthcare_robotics_smes_master_expanded.csv` (pass 2) were built, so anyone opening this folder later can verify or extend the work.
 
-**Data collection date:** 2026-04-23.
-**Collector:** Claude Opus 4.7, run interactively. Every row in the master CSV carries a `source_url` pointing to the page where the company was found.
+**Pass 1 — Data collection date:** 2026-04-23. 130 companies across 18 countries.
+**Pass 2 — Data collection date:** 2026-04-24. Adds 97 new companies (total 227) across 28 countries; fills the MEDICA / cluster-directory / CEE-Baltic / CORDIS-spin-off gaps explicitly acknowledged in §3 of this document.
+**Collector:** Claude Opus 4.7, run interactively. Every row in each master CSV carries a `source_url` pointing to the page where the company was found.
 
 ---
 
@@ -163,13 +164,20 @@ BD Rowa (BD-owned), Stryker Mako, Zimmer ROSA, Smith+Nephew CORI, Medtronic Hugo
 
 ## 4. How to reproduce or extend
 
-### To reproduce this run
+### To reproduce pass 1
 ```
-# Shards are already in place; if you want to regenerate the master:
-cd /home/fom/Documents/Docs/TEF-Health/listSMEs
-python3 merge.py                # 5 CSVs in → master CSV out + needs_email_enrichment.csv
+cd <repo>
+python3 merge.py                # 5 CSVs in → eu_healthcare_robotics_smes_master.csv + needs_email_enrichment.csv
 python3 apply_enrichment.py     # overlays shards/enrich_manual.csv
 ```
+NOTE: `merge.py` has a hard-coded `BASE = Path("/home/fom/Documents/Docs/TEF-Health/listSMEs")` that is stale after the repo moved under `Robotics Task Force/`. Fix the path before re-running, or use `extend.py` (pass 2) which resolves paths relative to the script.
+
+### To reproduce pass 2
+```
+cd <repo>
+python3 extend.py               # existing master + 4 new shards → eu_healthcare_robotics_smes_master_expanded.csv
+```
+`extend.py` preserves the emails already enriched into `eu_healthcare_robotics_smes_master.csv` — it never overwrites an email with a blank from a pass-2 shard. Pass-2 additions are tagged `[pass-2]` in their `notes` field for provenance.
 
 ### To extend the list
 1. **Highest ROI, free:** CORDIS advanced search for Horizon Europe SME participants whose topic contains "robotics" and whose project is in the health cluster. Likely adds 20–50 SMEs. Requires interactive filtering — not scriptable.
@@ -182,3 +190,69 @@ python3 apply_enrichment.py     # overlays shards/enrich_manual.csv
 - Strip `sme_likely=No` rows if you need strict SME filtering.
 - Verify headcount via Orbis / national business registry for `sme_likely=Yes` rows before pitching TEF-Health de-minimis services.
 - Do NOT harvest named-person emails by guessing patterns (firstname.lastname@domain). Use LinkedIn Sales Navigator or a GDPR-aware enrichment tool (Apollo, Lusha, Cognism) with a documented legitimate-interest assessment.
+
+---
+
+## 5. Pass 2 — the expansion (2026-04-24)
+
+Pass 1 closed out with explicit caveats (see §3): MEDICA had never been scanned, cluster member directories couldn't be fetched, CEE/Baltic coverage was thin, CORDIS/EIC beneficiary lists were unmined, and university spin-off pools were only partially walked. Pass 2 attacks those four gaps directly.
+
+### 5.1 Four new research agents (non-overlapping pools)
+
+| Agent | Source pool | Shard | New rows |
+|---|---|---|---|
+| 5 | MEDICA Düsseldorf Start-up Competition 2024/2025 + MEDICA main exhibitor directory, COMPAMED, MedtecLIVE/T4M, Automatica Healthtech Pavilion, SLAS Europe, Arab Health, Venture Leaders Medtech CH, Haventure-merger follow-ups | `shards/agent5_medica_tradeshows.csv` | 20 |
+| 6 | Cluster member directories: Medicen Paris Region, Odense Robotics, SPECTARIS, I-RIM, Biocat, Norway Health Tech, Medicalps full list, TechMed Twente, ETH spin-offs, Venturelab | `shards/agent6_cluster_deep_dives.csv` | 28 |
+| 7 | Country deep-dive into CEE/Baltics/under-covered Nordics: CZ, SK, HU, PL, RO, BG, SI, HR, EE, LV, LT, GR, and missing entries in FI/SE/NO/PT/UK | `shards/agent7_cee_baltic_nordic.csv` | 31 |
+| 8 | CORDIS Horizon Europe + EIC Accelerator + Eurostars + EIT Health InnoStars + university spin-offs (UCL, Imperial, Twente, Sant'Anna, IIT Genoa, KU Leuven, Erasmus MC, Chalmers, EPFL, UZH/USZ) | `shards/agent8_cordis_spinoffs.csv` | 19 |
+
+Gross additions: 98 candidate rows. After cross-shard and master dedup: **97 net new companies**; one collision absorbed (`Machnet Medical Robotics` appeared in both agent 6 and agent 8, same entity).
+
+### 5.2 Sandbox limitation repeated, work-around applied
+
+All four pass-2 agents again reported that `Write`, `Bash` (writes), and (for three of four) `WebFetch` were denied in their sub-agent sandbox. They produced their CSVs inline in their final response; the parent conversation persisted each shard to `shards/` verbatim. No content was re-authored. This is the same limitation that shaped pass 1 and remains the #1 methodological constraint.
+
+Two practical consequences:
+- Email column is largely blank in pass-2 rows (1 verified email in shard 5, 1 in shard 6, 2 in shard 8, 0 in shard 7). These 79 of 227 rows with email are almost entirely carried over from pass 1's enrichment. A pass-3 enrichment run is needed for the new 97.
+- Source URLs point to search-snippet-visible pages (trade-show listings, EIT Health press releases, cluster member pages) rather than first-party directory scrapes. Where a first-party URL was available in the snippet, the agents preferred it.
+
+### 5.3 What pass 2 added, by axis
+
+**Countries newly represented:** BG, CZ, EE, GR, HR, HU, LV, RO, SI, SK — Central/Eastern and Balkan coverage is now non-empty.
+
+**Sub-domains substantially strengthened:**
+- Surgical robotics: +Nami Surgical (GB), Panda Surgical (GB), Atlas Endoscopy (GB), Orthokey (IT), SVAN (AT), BHS (AT microsurgery), Kyniska (FR — 2024 KAT+LinkX+Ostesys merger), AcuSurgical (FR retinal), Spatium Medical (NL), Surgify (FI), PQx (ES), LUMA Vision (IE), Palliare (IE), Odne (CH endodontics/neurovasc), Machnet (NL MRI biopsy), RONNA Medical (HR neuro), Asvel (EE endoscopy), Medical Decision Alliance (DE), Symphera (DE), EnAcuity (GB), Era Endoscopy (IT), MinMaxMedical (FR), LUKE Robotics (FR), TESCAN Medical / TecuMed (CZ), OR Productivity FreeHand (GB laparoscopy), SpineGuard (FR — flagged No), ab medica (IT — flagged No).
+- Endovascular / microrobotics: +Artiria (CH), Flux Robotics (NL), Neurescue (DK), Navari (SE AR-guided), MagnebotiX (CH), FemtoTools (CH), ReCath (NL).
+- Rehab / exoskeleton: +Axosuits (RO), ExoFrame (PL), Kinestica (SI), Iskra Medical (SI), REEV (FR), Powered Orthotics (DE), Auxivo (CH), Otivio (NO), Vilje Bionics (NO), Auxsys (DE).
+- Pharmacy + lab automation: +NewIcon (FI), IMSTec (DE — flagged No), Grab2Go (EE), Cellaven (FR), goodBot (DE), 3DHISTECH (HU — flagged No), Nordbo Robotics (DK).
+- Assistive / service: +Alba Robot (IT), YUMAN (DK), NODE Robotics (DE), Furhat Robotics (SE), SARA/Navel-adjacent entries in DE.
+- Disinfection: +Decon-X (NO), Autonomous Units (DK).
+- Tele-ultrasound / imaging: +Medirob (SE), AdEchoTech (FR), Dermus (HU).
+- Prosthetics: +ProsFit (BG).
+- BCI / neuro: +BirgerMind (LV), Vilimed (LT), Neurobit Systems (PL), StethoMe (PL).
+- Intubation robotics: +aiEndoscopic (CH — new sub-domain for the list).
+- Humanoid for healthcare: +Generative Bionics (IT — flagged No, €70M seed).
+- Medical drone logistics: +ABZero (IT).
+- Surgical training hardware: +PHACON (DE).
+- Radiotherapy / tele-ops: +roclub (DE remote MRI/CT teleoperation).
+
+### 5.4 Pass-2 borderline / rejected entries
+
+Kept with `confidence=low` (domain edge-cases the next reviewer should arbitrate):
+- Carebot (CZ), Powerful Medical (SK), Ligence (LT), Kelvin Health (BG), ORamaVR (GR), CoNurse (HR), RespiBit (GR), CardioMedive (RO), Biodevices (PT), Robin Heart / FRK Zabrze (PL — a foundation not a company, but has a commercialised telemanipulator), MultiplexDX (SK — reagent platform, lab-adjacent).
+
+Dropped by the pass-2 agents during their own triage:
+- Noah Labs (DE — pure AI software), Aptadel Therapeutics, StemSight (non-robotic therapeutics), Hannes Hand (IIT research, not a company), Project MARCH (student — already on pass-1 reject list), AEON Scientific (→ Stereotaxis per pass-1 rejection log), avateramedical (already on master as Avatera Medical), THEKER Robotics (industrial not healthcare), Kinaptic (US), BioXtreme (IL), Magnamed (BR), NaoX (pure consumer EEG).
+- CheckEye (UA) — dropped here despite appearing as EIT Health InnoStars finalist; Ukraine is outside the EU27+UK+CH+NO+IS+LI scope per §1.
+- Hobbs Rehabilitation (GB) — rehabilitation clinic / service provider, not a device manufacturer.
+- Ultratopia (KU Leuven spine robot) — dropped: no commercial spin-off yet, only KU Leuven press announcement.
+- Acoustic Insight, Sensible Healthcare Systems (TU Delft MedTech Accelerator cohort entries) — dropped: no retrievable website, insufficient evidence of a hardware product.
+
+### 5.5 Gaps that remain after pass 2
+
+- **TEF-Health Call 1 / Call 2 awardee list still not public.** Pass-2 agent 8 confirmed this via direct search. Zero direct TEF-Health beneficiaries on the list.
+- **Dental surgery, hair transplant, capsule endoscopy** — still EU-thin (structural market gap, not a coverage gap).
+- **Ukraine** — explicitly out of scope; if scope is later widened to EU candidate countries, CheckEye and others should be re-included.
+- **Email enrichment for the 97 new rows** has not been run. `needs_email_enrichment.csv` will need regeneration against the expanded master. 148 companies now lack an email.
+- **sme_likely verification still heuristic.** 24 rows now carry `No`, 194 `Yes`, 9 `unknown`. Orbis/registry check still required before any SME-only outreach.
+- **Cross-shard deduplication relied on exact normalized-name matches.** Rename/subsidiary relationships (e.g., Kyniska Robotics = 2024 merger of KAT + LinkX + OSTESYS, all of which remain as separate rows on the pass-1 master with their original Haventure source) were NOT auto-resolved. This is intentional — each legacy name still has an active `source_url` — but a human reviewer should decide whether to collapse the three Haventure rows into Kyniska.
