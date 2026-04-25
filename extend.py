@@ -17,6 +17,10 @@ NEW_SHARDS = [
     BASE / "shards/agent6_cluster_deep_dives.csv",
     BASE / "shards/agent7_cee_baltic_nordic.csv",
     BASE / "shards/agent8_cordis_spinoffs.csv",
+    BASE / "shards/agent9_cordis_eithealth.csv",
+    BASE / "shards/agent10_medica_compamed.csv",
+    BASE / "shards/agent11_eic_eib.csv",
+    BASE / "shards/agent12_gated_clusters.csv",
 ]
 OUT_MASTER = BASE / "eu_healthcare_robotics_smes_master_expanded.csv"
 

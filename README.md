@@ -1,28 +1,32 @@
 # EU Healthcare Robotics SMEs — research-grade list
 
 **Pass 1 data collection:** 2026-04-23 (130 companies).
-**Pass 2 data collection:** 2026-04-24 (+97 new → 227 total). Pass 2 targets the gaps explicitly logged in pass 1: MEDICA exhibitor scan, cluster member directories, CEE/Baltic deep-dive, CORDIS/EIC beneficiaries, university spin-offs.
+**Pass 2 data collection:** 2026-04-24 (+97 → 227 total). Filled the gaps logged in pass 1: MEDICA exhibitor scan, cluster member directories, CEE/Baltic deep-dive, CORDIS/EIC beneficiaries, university spin-offs.
+**Pass 3 data collection:** 2026-04-25 (+42 → 269 total). Tier 1 of the exhaustive plan: deeper CORDIS/EIT Health, MEDICA + COMPAMED full product-group scan, EIC + EIB beneficiaries 2021-2025, gated cluster member directories. See `METHODOLOGY.md` §6.
 
 Full methodology, per-agent source pools, rejection log, and documented remaining gaps are in [`METHODOLOGY.md`](METHODOLOGY.md) — read that before acting on the list.
 
 ## Files
-- **`eu_healthcare_robotics_smes_master_expanded.csv`** ← **use this**. 227 unique companies. Pass-2 additions are tagged `[pass-2]` in their `notes`.
-- **`eu_healthcare_robotics_smes_master.csv`** — pass-1 master (130 companies). Kept for provenance and because pass-2 is a superset.
-- **`eu_healthcare_robotics_smes.csv`** — original 26-company seed list (kept for provenance).
-- **`METHODOLOGY.md`** — pipeline, per-agent mandates and reported gaps, rejection log, how to reproduce (both passes).
-- **`shards/`** — raw per-source outputs from 8 parallel research agents + manual enrichment. Use these to audit where any row came from. Pass-1 shards: `agent1..agent4`. Pass-2 shards: `agent5_medica_tradeshows`, `agent6_cluster_deep_dives`, `agent7_cee_baltic_nordic`, `agent8_cordis_spinoffs`.
-- **`merge.py`** — pass-1 dedupe + merge script (NOTE: has a stale `BASE` path; see METHODOLOGY §4).
-- **`extend.py`** — pass-2 merge: takes the pass-1 master + 4 new shards and writes the expanded master. Resolves paths relative to its own location.
+- **`eu_healthcare_robotics_smes_master_expanded.csv`** ← **use this**. 269 unique companies. Pass-2 + pass-3 additions are tagged `[pass-2]` in their `notes`.
+- **`eu_healthcare_robotics_smes_master.csv`** — pass-1 master (130 companies). Kept for provenance.
+- **`eu_healthcare_robotics_smes.csv`** — original 26-company seed list.
+- **`METHODOLOGY.md`** — pipeline, per-agent mandates, gaps, rejection log, how to reproduce (all three passes + future tiers).
+- **`shards/`** — raw per-source outputs from 12 parallel research agents + manual enrichment. Use these to audit where any row came from.
+  - Pass-1 shards: `agent1_eu_programs`, `agent2_robotics_clusters`, `agent3_national_incubators`, `agent4_public_lists`.
+  - Pass-2 shards: `agent5_medica_tradeshows`, `agent6_cluster_deep_dives`, `agent7_cee_baltic_nordic`, `agent8_cordis_spinoffs`.
+  - Pass-3 shards: `agent9_cordis_eithealth`, `agent10_medica_compamed`, `agent11_eic_eib`, `agent12_gated_clusters`.
+- **`merge.py`** — pass-1 dedupe + merge script (NOTE: stale `BASE` path; see METHODOLOGY §4).
+- **`extend.py`** — pass-2 + pass-3 merge: existing master + 8 new shards → expanded master. Resolves paths relative to its own location. Re-runnable.
 - **`apply_enrichment.py`** — applies the manual contact-email pass onto the pass-1 master.
 
-## Coverage (as of 2026-04-24, expanded master)
-- **227 unique companies** across **28 European countries**: AT, BE, BG, CH, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IT, LT, LU, LV, NL, NO, PL, PT, RO, SE, SI, SK. (Pass 1: 18 countries. Pass 2 adds BG, CZ, EE, GR, HR, HU, LV, RO, SI, SK.)
-- **79 with verified role-level email** carried over from pass 1 (info@, contact@, hello@, sales@, office@, business@). Pass-2 rows are mostly email-blank — an enrichment run is still owed on the 97 new companies.
+## Coverage (as of 2026-04-25, expanded master)
+- **269 unique companies** across **28 European countries**: AT, BE, BG, CH, CZ, DE, DK, EE, ES, FI, FR, GB, GR, HR, HU, IE, IT, LT, LU, LV, NL, NO, PL, PT, RO, SE, SI, SK.
+- **84 with verified role-level email**. Pass-3 added 5 (info@precisis.de, info@inbrain-neuroelectronics.com, info@overture.life, info@nyxoah.com, investor.relations@edap-tms.com).
+- **~185 rows still without an email** — enrichment run is still owed on pass-2 and pass-3 rows.
 - **21 contact-form-only** (from pass 1).
-- **14 `unreachable`** (from pass 1; not retried in pass 2).
-- **148 rows currently without an email** (≈21 pass-1 deliberate skips + ≈97 pass-2 additions + 30 borderline).
-- **`sme_likely` breakdown:** Yes = 194, No = 24, unknown = 9.
-- **Sub-domains covered (expanded):** surgical robotics (laparoscopy, spine, ortho, urology, ENT, ophthalmology, microsurgery, neurosurgery, cardiac, endodontics, bone-selective burring, MRI-guided biopsy, ultrasonic scalpels), rehab/exoskeleton (gait, upper-limb, hand, ICU, back, motorised knee orthosis, stroke arm), prosthetics/bionics, endovascular/TAVI/thrombectomy/guidewires/aortic-occlusion, microrobotics (magnetic catheters, MEMS), capsule endoscopy, disinfection (UV-C + H2O2 dry-mist), pharmacy automation (dispensing, vending, blister packing), clinical lab automation (pipetting, cell culture, digital pathology), assistive/elderly-care (humanoid, self-driving wheelchair, transport AMR), radiotherapy positioning, social/service robots, **intubation robotics** (new), **medical drone logistics** (new), **tele-operated remote imaging/MRI-CT** (new), **surgical training hardware** (new), **BCI / neurostim / biofeedback** (expanded).
+- **14 `unreachable`** (from pass 1; not retried since).
+- **`sme_likely` breakdown:** Yes = 225, No = 35, unknown = 9. Pass 3 added 11 to the `No` bucket (large public companies and parent-owned subsidiaries: Surgical Science, Inpeco, United Robotics Group, Universal Robots, Kassow Robots, Robotnik Automation, Andrew Alliance/Waters, Demcon Medical Robotics, Sonceboz, Nyxoah, EDAP TMS).
+- **Sub-domains covered (after pass 3):** surgical robotics (laparoscopy, spine, ortho, urology, ENT, ophthalmology, microsurgery, neurosurgery, cardiac, endodontics, bone-selective burring, MRI-guided biopsy, ultrasonic scalpels, NOTES, percutaneous needle), **robotic HIFU**, **robotic IVF/embryology**, **robotic intravitreal injection**, rehab/exoskeleton (gait, upper-limb, hand, ICU, back, motorised knee orthosis, stroke arm, soft exosuit), prosthetics/bionics, endovascular/TAVI/thrombectomy/guidewires/aortic-occlusion, microrobotics, capsule endoscopy, **robotic phlebotomy** (new), **sample-collection robotics** (new), **CO2 angiography automation** (new), disinfection (UV-C + H2O2 dry-mist), pharmacy automation, clinical lab automation (pipetting, cell culture, digital pathology), assistive/elderly-care (humanoid, self-driving wheelchair, transport AMR, dementia robot, companion robot), radiotherapy positioning, **active implantable neurostim** (expanded — epilepsy, brain interface, sleep apnea, post-prostatectomy, neuromuscular), social/service robots, intubation robotics, medical drone logistics, tele-operated remote imaging/MRI-CT, surgical training hardware, BCI/neurostim/biofeedback, **medical-grade actuator/motor/electronics OEMs** (component-supplier tier — Sonceboz, Mirmex Motor, KOCO MOTION, Solectrix, Hankamp Gears).
 
 ## Sources mined
 Aggregated candidates from ~60+ sources across two passes — every row cites which one in `source_url`:
@@ -58,8 +62,8 @@ Dealroom public robotics list, Tracxn "Robotics in Healthcare Europe," Sifted cu
 - `confidence` — `high` (from program's own portfolio page or the company's own site), `medium` (from news/derivative source), `low` (single unverified reference).
 
 ## Known limitations (be honest about these before you act on the list)
-1. **Completeness.** Tracxn claims 177 "robotics in healthcare" companies in Europe; Dealroom shows a broader hardware-health pool. We have 227 after pass 2, filtering non-robotic and non-SME candidates. Remaining gaps: **dental surgery robotics** (no confirmed EU SME — market is US-dominated), **hair transplant robotics** (no EU competitor identified), **EU capsule endoscopy** (only BioCam), **TEF-Health Call 1/2 awardees** (still not published — zero direct TEF-Health beneficiaries in the list), and **pass-2 email enrichment for the 97 new rows** (owed but not yet run).
-2. **SME check is rough.** 194 flagged `Yes`, 24 `No`, 9 `unknown`. Pass-1 `No` flags (CMR Surgical, Distalmotion, Wandercraft, MMI, German Bionic, Hocoma, UVD/Blue Ocean, Spineart, Mauna Kea, Corin, Renishaw, Caranx, Exopulse, Mentice, Bioservo, Preceyes, Endocontrol, Idrogenet/Gloreha) remain. Pass 2 adds `No` flags on: BTL Industries (CZ), 3DHISTECH (HU), SpineGuard (FR, Euronext-listed), IMSTec (DE, ~150 staff), ab medica (IT, large distributor group), Generative Bionics (IT, €70M seed). Verify headcount/turnover against Orbis or the Business Registry before including in a formal SME-only outreach.
+1. **Completeness.** Tracxn claims 177 "robotics in healthcare" companies in Europe; Dealroom shows a broader hardware-health pool. We have **269 after pass 3**, filtering non-robotic and non-SME candidates. Remaining gaps: **dental surgery robotics** (no confirmed EU SME — US-dominated market), **hair transplant robotics** (no EU competitor identified), **EU capsule endoscopy** (only BioCam + Atlas Endoscopy), **TEF-Health Call 1/2 awardees** (still not published — zero direct TEF-Health beneficiaries on the list), and **email enrichment owed for the 185 rows added in passes 2 and 3** (only 84/269 have a role-level email).
+2. **SME check is rough.** 225 flagged `Yes`, 35 `No`, 9 `unknown`. Pass-1 `No` flags (CMR Surgical, Distalmotion, Wandercraft, MMI, German Bionic, Hocoma, UVD/Blue Ocean, Spineart, Mauna Kea, Corin, Renishaw, Caranx, Exopulse, Mentice, Bioservo, Preceyes, Endocontrol, Idrogenet/Gloreha) remain. Pass 2 added `No` flags on: BTL Industries (CZ), 3DHISTECH (HU), SpineGuard (FR Euronext), IMSTec (DE ~150 staff), ab medica (IT large distributor group), Generative Bionics (IT €70M seed). Pass 3 added `No` flags on: Surgical Science (SE Nasdaq Stockholm), Inpeco (CH ~2600 systems shipped), United Robotics Group (DE integrator/holding), Universal Robots (DK Teradyne), Kassow Robots (DK Bosch Rexroth), Robotnik Automation (ES URG-acquired), Andrew Alliance (CH Waters Lab Automation brand), Demcon Medical Robotics (NL group >1000 staff), Sonceboz (CH ~700 staff), Nyxoah (BE Euronext/Nasdaq), EDAP TMS (FR Nasdaq). Verify headcount/turnover against Orbis or the Business Registry before any formal SME-only outreach. Orbis NACE-26.60/32.50 query is the single highest-yield missing source.
 3. **Sub-domain edge cases.** A handful of entries are borderline-robotic (Neuroelectrics: EEG/stimulation wearable; Fundamental Surgery: haptic VR training; SoundCell: graphene nanodrum sensor; Somnox: breathing sleep robot with some motion). Agents included them because the sources did; re-classify per your definition of "robotics."
 4. **Email enrichment stopped at role-level.** We did not harvest named-person addresses. Apollo / Lusha / Cognism / LinkedIn Sales Navigator are the right tools for that — and they require documenting a lawful basis under GDPR/PECR before you send.
 5. **Merged duplicates** — 40 rows were merged across shards (e.g. ABLE Human Motion appeared in 3 sources). The surviving row carries `[cross-sourced xN]` in its notes so you can tell.
@@ -70,13 +74,20 @@ Dealroom public robotics list, Tracxn "Robotics in Healthcare Europe," Sifted cu
 - Named-person addresses scraped or guessed → high risk in EU/EEA; UK PECR also bans unsolicited marketing to sole traders/partnerships without consent.
 - Document for each contact: (a) source, (b) why you believe you have a legitimate interest, (c) how to unsubscribe.
 
-## To extend further (post pass 2)
-1. **Email enrichment on the 97 pass-2 additions** — the pipeline's missing step. Regenerate `needs_email_enrichment.csv` from the expanded master and run the same WebFetch enrichment that pass 1 used.
-2. **CORDIS / EIC Accelerator paid-tier and authenticated access** — pass-2 agents could surface CORDIS candidates from search-snippet snapshots but could not enumerate full Horizon Europe Cluster 1 (Health) SME participant lists. Interactive filtering in the CORDIS UI and the EIC Dashboard will add more.
-3. **Dealroom / Tracxn paid tiers**: turn on the robotics + healthtech filters and export for 1-click overlap analysis.
-4. **Collapse legacy Haventure rows into Kyniska Robotics** — KAT Robotics, LinkX Robotics, and OSTESYS all merged into Kyniska in Sept 2024 (pass-2 finding). Four rows currently, should be one with merger history in notes.
-5. **Niches where EU coverage is genuinely thin** (market gap, not oversight): dental surgery robotics (no confirmed EU SME — Neocis/Perceptive are US), hair-transplant robotics (US-dominated), capsule-endoscopy robotics (only BioCam EU-side), robotic ophthalmology (Preceyes → Zeiss), robotic ENT (Medineering → Brainlab). Pass 2 did not find new candidates in these.
-6. **Ukrainian medtech robotics SMEs** (CheckEye and similar) — currently out of scope. Widen scope if EU candidate countries are in play.
+## To extend further (post pass 3)
+
+Pass 3 closed Tier 1 of the exhaustive plan (CORDIS + MEDICA full + EIC + gated clusters). What remains:
+
+1. **Orbis / Bureau van Dijk NACE-26.60/32.50 SME query** — the single highest-yield remaining source. Filters: NACE 26.60 (irradiation/electromedical) + 32.50 (medical instruments) ∧ headcount 10–249 ∧ turnover ≤ €50M ∧ EU27+CH+UK+NO+IS+LI ∧ keyword `robot*`/`exoskeleton`/`surgical platform`. Paid; TEF-Health institutional access likely. Expected yield: 50–100 net new + retroactive `sme_likely` verification of all 269.
+2. **Email enrichment on the ~185 rows currently without one** — pipeline's missing step. Regenerate `needs_email_enrichment.csv` from the expanded master and run a WebFetch pass like pass-1's enrichment.
+3. **Tier 2 of the plan** — vertical surgical-conference exhibitor lists (Hamlyn Symposium, CRAS, EAU, EFORT, EANS, CIRSE, ESGE, IEEE ICRA/IROS health-demo); regional innovation agencies (Medical Valley EMN, Lyonbiopôle, Toscana Life Sciences, OBN, ACMIT, Health Cluster Portugal, Corallia, etc.); university TTOs not yet hit (Oxford, Cambridge, Fraunhofer Venture, Politecnico Milano/Torino, KTH, NTNU, BME Hungary, AGH Krakow); Eurostars beneficiary database; EUDAMED + Notified Body certificate searches. Expected yield: 60–120.
+4. **Tier 3** — Dealroom/Tracxn/PitchBook paid-tier exports; EPO/WIPO patent mining; LinkedIn Sales Navigator manual filter; M&A reverse-engineering of Stryker/Zimmer/Smith+Nephew/Medtronic/JJ/BD/Philips/Zeiss/Brainlab/Ottobock acquisition history.
+5. **Reclassification pass** — review the `confidence=low` rows now on master against a tightened active-actuation definition. Likely outcome: −10 to −20 rows but higher credibility.
+6. **Cluster directories that even pass 3 couldn't walk**: SPECTARIS Mitglieder, CATROBOTICS members, Biocat Salesforce-hosted directory, Medicen full adherents page, full Odense Robotics member roster. Same companies likely in Orbis or Tracxn paid tiers.
+7. **Collapse legacy rows where mergers are documented** — KAT + LinkX + OSTESYS → Kyniska Robotics (2024); Caranx Medical + Artedrone → Carvolix (Dec 2025). Currently kept as separate rows for source-URL provenance.
+8. **Niches where EU coverage is genuinely thin** (market gap, not oversight): dental surgery robotics (Neocis/Perceptive are US), hair-transplant robotics (US-dominated), robotic ophthalmology (Preceyes → Zeiss), robotic ENT (Medineering → Brainlab).
+9. **Ukrainian medtech robotics SMEs** (CheckEye and similar) — currently out of scope. Widen scope if EU candidate countries are in play.
+10. **TEF-Health Call 1/2 awardees** — not publicly published. Direct ask to the TEF-Health consortium is the only fix.
 
 ## How to audit a row
 Open the CSV, find the row, click the `source_url`. If the source page still names the company, confidence is at least `medium`. To raise to `high`: visit the company's own site, confirm the email in the CSV appears there verbatim, and confirm HQ country from the footer or imprint.

@@ -4,6 +4,7 @@ How the lists in `eu_healthcare_robotics_smes_master.csv` (pass 1) and `eu_healt
 
 **Pass 1 — Data collection date:** 2026-04-23. 130 companies across 18 countries.
 **Pass 2 — Data collection date:** 2026-04-24. Adds 97 new companies (total 227) across 28 countries; fills the MEDICA / cluster-directory / CEE-Baltic / CORDIS-spin-off gaps explicitly acknowledged in §3 of this document.
+**Pass 3 — Data collection date:** 2026-04-25. Adds 42 new companies (total 269) by running Tier 1 of the pass-3 plan: deeper CORDIS / EIT Health mining, MEDICA + COMPAMED full product-group scan, EIC Accelerator + EIB beneficiary lists, and gated cluster member directories (Medicen, BioAlps, MedTech Twente, Norway Health Tech, etc.). See §6.
 **Collector:** Claude Opus 4.7, run interactively. Every row in each master CSV carries a `source_url` pointing to the page where the company was found.
 
 ---
@@ -256,3 +257,97 @@ Dropped by the pass-2 agents during their own triage:
 - **Email enrichment for the 97 new rows** has not been run. `needs_email_enrichment.csv` will need regeneration against the expanded master. 148 companies now lack an email.
 - **sme_likely verification still heuristic.** 24 rows now carry `No`, 194 `Yes`, 9 `unknown`. Orbis/registry check still required before any SME-only outreach.
 - **Cross-shard deduplication relied on exact normalized-name matches.** Rename/subsidiary relationships (e.g., Kyniska Robotics = 2024 merger of KAT + LinkX + OSTESYS, all of which remain as separate rows on the pass-1 master with their original Haventure source) were NOT auto-resolved. This is intentional — each legacy name still has an active `source_url` — but a human reviewer should decide whether to collapse the three Haventure rows into Kyniska.
+
+---
+
+## 6. Pass 3 — Tier 1 of the exhaustive plan (2026-04-25)
+
+After pass 2 closed at 227 companies / 28 countries, a "be even more exhaustive" plan was drafted (see README "To extend further" and the prior conversation log). Pass 3 implements **Tier 1** of that plan — the four highest-yield/cost-ratio source pools:
+
+1. CORDIS systematic Horizon Europe + H2020 + Eurostars + EIT Health for healthcare-robotics SME participants.
+2. MEDICA + COMPAMED full exhibitor directory, filtered by product group (not just Start-up Competition winners).
+3. EIC Accelerator + Pathfinder + Transition + EIC Fund + EIB / InvestEU healthcare-robotics beneficiaries 2021-2025.
+4. Full member directories of gated clusters that pass 1 and pass 2 only sampled (Medicen Paris Region, Odense Robotics, SPECTARIS, I-RIM, BioAlps, Norway Health Tech, MedTech Twente, Medicalps, Eurasanté, Barcelona Health Hub, Agoria, Venturelab).
+
+Tier 1 item 3 of the original plan — **Orbis / Bureau van Dijk NACE-code query** — was deliberately skipped (paid database, no institutional credentials in the agents' sandbox). It remains the single highest-yield missing source.
+
+### 6.1 Four pass-3 agents
+
+| Agent | Source pool | Shard | Returned | Net new after curation |
+|---|---|---|---|---|
+| 9 | CORDIS / Eurostars / EIT Health systematic + DIH-HERO + TEF-Health public refs | `shards/agent9_cordis_eithealth.csv` | 30 | 15 |
+| 10 | MEDICA + COMPAMED + DMEA + MedtecLIVE + Automatica Healthtech full product-group exhibitor directories | `shards/agent10_medica_compamed.csv` | 9 | 8 |
+| 11 | EIC Accelerator + Pathfinder + Transition + EIC Fund + EIB / InvestEU 2021-2025 | `shards/agent11_eic_eib.csv` | 9 | 5 |
+| 12 | euRobotics, Medicen, Odense, SPECTARIS, I-RIM, BioAlps, NHT, CATROBOTICS, Medicalps, Eurasanté, TechMed Twente, Barcelona Health Hub, Agoria, Venturelab | `shards/agent12_gated_clusters.csv` | 23 | 14 |
+
+Gross candidates: 71. After dropping (a) duplicates of master, (b) duplicates between shards (Vitestro hit by both 9 and 11; Machnet hit by both 6 and 12), (c) entries already on pass-1's rejected list (Pixee Medical), (d) sensor-only and software-only entries that fail the active-actuation rule (Protembis, VesselSens, Acorai, Anatoscope, Endotact, ROBOTIS-EU, Ekso US-HQ subsidiary, Mediprema neonatal warmers, Twin/IIT-INAIL research-not-company, Dexterous Robot Lab academic-not-company, Tecan public co lab veteran, Anybotics general-purpose quadruped): **42 net new on the master**.
+
+### 6.2 Sandbox limitation, again
+
+All four pass-3 agents reported that **WebFetch was denied in their sandbox** (same as passes 1-2). Output was returned inline as CSV; the parent saved it to `shards/`. The agents' first attempt actually hit an Anthropic API rate limit and returned zero rows; pass 3 was re-run after the limit reset and succeeded.
+
+This sandbox constraint kept biting the same way: agents could enumerate companies named in WebSearch snippets but could not walk the full member directories of Medicen / Odense / SPECTARIS / CATROBOTICS / Norway Health Tech end-to-end. Pass-3 agent 12 explicitly noted that CATROBOTICS, full SPECTARIS Mitglieder, and the Biocat Salesforce-hosted directory could not be enumerated at all.
+
+### 6.3 What pass 3 added, by axis
+
+**New sub-domains** — added because of pass-3 finds:
+- **Robotic phlebotomy / blood draw** — Vitestro (NL, EIC Fund + Series B, CE Aug 2024).
+- **Robotic IVF / embryology lab automation** — Overture Life (ES, EIB EUR 20M Nov 2025).
+- **Active implantable neurostim** (expanded) — PRECISIS (DE, EASEE epilepsy implant), INBRAIN Neuroelectronics (ES, graphene neural interface), Comphya (CH, post-prostatectomy nerve stim), Neurosoft Bioelectronics (CH, soft ECoG implant), MintNeuro (GB, Imperial spin-out), Nyxoah (BE, sleep-apnea hypoglossal stim — listed/not-SME).
+- **Robotic intravitreal injection** — Ophthorobotics (CH, ETH spin-off).
+- **Robotic HIFU** — EDAP TMS (FR, Focal One — listed/not-SME).
+- **Robotic hand orthosis** — Emovo Care (CH, EPFL spin-off).
+- **Active arm-support orthoses** — Focal Meditech (NL).
+- **Image-guided percutaneous needle robot** — Interventional Systems (AT, Micromate).
+- **Sample-collection robot** — Lifeline Robotics (DK, Careebo throat-swab robot).
+- **Disinfection robotics** (further) — KELO Robotics (DE).
+- **Medical drone delivery** (further) — Apian (GB, NHS-doctor-led drone medical logistics).
+- **Surgical-training haptics** (further) — VirtaMed (CH, ArthroS/LaparoS), Surgical Science (SE, LapSim — listed/not-SME), VirtualiSurg (FR).
+- **Soft exoskeleton** — MyoSwiss (CH, Myosuit).
+- **Service / humanoid healthcare** — ZoraBots (BE), Tinybots (NL, Tessa dementia robot), Blue Frog Robotics (FR, Buddy elder-care).
+- **Lab automation pipetting / liquid-handling** — Andrew Alliance (CH, Waters Lab Automation brand — not-SME).
+- **General mobile robots used in hospitals** (component-supplier-tier) — Robotnik Automation (ES, URG-acquired), Universal Robots (DK, Teradyne), Kassow Robots (DK, Bosch-owned), Inpeco (CH, large lab automation).
+- **Component-supplier tier (medical-grade actuators / motors / electronics)** — Sonceboz (CH), Mirmex Motor (BE), KOCO MOTION (DE), Solectrix (DE), Hankamp Gears (NL).
+- **Innovation Worldcup MEDICA Start-up 2022** — Rehabilia Technologies (IT, PhiCube upper-limb rehab).
+- **NOTES surgical robot** — ValueBiotech (IT, Niguarda spin-off, M.I.L.A.N.O.).
+- **Automated CO2 angiography** — Angiodroid (IT).
+- **United Robotics Group (DE)** — kept as not-SME but useful as an integrator/holding parent for SME outreach context (owns Robotnik, Aldebaran/SoftBank Robotics Europe, etc.).
+- **FES walking-aid distribution + dev** — Cypromed (NO, Norway Health Tech member, WalkAide).
+- **Demcon Medical Robotics (NL)** — kept as not-SME (Demcon group >1000 staff) but the medical-robotics business unit is large enough to warrant flagging for component or integration partnerships.
+
+**Pass-3 entries flagged `sme_likely=No`** (added 11 to the 24 from pass 2 → 35 total):
+Surgical Science, Inpeco, United Robotics Group, Universal Robots, Kassow Robots, Robotnik Automation, Andrew Alliance (Waters), Demcon Medical Robotics, Sonceboz, Nyxoah, EDAP TMS.
+
+### 6.4 Pass-3 borderline / rejected
+
+**Borderline kept with `confidence=low`** (next reviewer to arbitrate):
+- Hankamp Gears, Gable Systems, Kassow Robots, MC Health Tech (electrotherapy borderline), Innoway (HU EIT InnoStars finalist with limited public detail).
+
+**Rejected by pass-3 agents during triage**:
+- **Already on pass-1 rejection list, found again**: Pixee Medical (AR glasses, software-leaning), Mecuris-style 3D-print platforms.
+- **Sensor-only / passive devices** (failed active-actuation criterion): Protembis (cerebral embolic protection — passive filter), VesselSens (smart implant sensor only), Acorai (handheld diagnostic), Endotact (sensing implant), Anatoscope (3D modelling software).
+- **Software-only**: Idoven (AI cardiology), AlgoDx (sepsis ML), Cydar (cloud surgical guidance), Fimo Health, Medanets, FUSE-AI, Cardiolyse, Virtuleap.
+- **Non-EU HQs**: Saroa Surgical / Riverfield (JP), Cardiokol (IL), HealthTAG (UA), ROBOTIS-EU (KR-HQ), Ekso Bionics Europe (US parent), Speedbird Aero (BR), Cobionix/Marion/Haply (CA), Augmedics (IL), Ronovo Surgical (CN), Vine Medical / AnX Robotica (US).
+- **Industrial robotics, not healthcare**: Theker Robotics (Barcelona, AI-driven industrial), generic Hannover/Automatica Healthtech Pavilion exhibitors (ABB, Denso, Mikron, Hahn, Rollon, Teamtechnik etc.).
+- **Research/foundation, not company**: Twin/IIT-INAIL prosthesis project, Dexterous Robot Lab UK academic, SwissVascular silicone vessel models (training-prop maker not robot maker).
+- **Already-master**: Microsure, CAScination, Caranx Medical, Symphera, Bioservo Technologies, Robota Srl, Reactive Robotics, Vitestro (kept once, deduped from agents 9 and 11), Machnet (kept once, deduped from agents 6 and 12).
+
+### 6.5 Gaps that remain after pass 3 (Tier 1)
+
+**Closed by pass 3:**
+- Active-implantable neurostim sub-domain (was thin on master): now has 6 entries.
+- IVF/embryology lab robotics: was zero, now 1 (Overture Life).
+- Robotic phlebotomy: was zero, now 1 (Vitestro).
+- Component-supplier tier (medical actuator/motor OEMs): was zero, now 5.
+
+**Still open (will require Tier 2-3 of the plan):**
+- **Orbis / Bureau van Dijk NACE-26.60 / NACE-32.50 SME query** — by far the highest-yield remaining source. Skipped because paid. TEF-Health institutional access to Orbis is the single best next step; expected to add 50-100 SMEs and retroactively SME-verify the existing 269.
+- **TEF-Health Call 1 / 2 awardees** — still not published; not fixable by mining.
+- **Email enrichment owed for ~190 of 269 rows** (84 with email; 185 without). Pass-3 added zero emails.
+- **Vertical surgical-conference exhibitor lists** (Hamlyn Symposium, CRAS, EAU, EFORT, EANS, CIRSE, ESGE, ICRA/IROS health-demo) — Tier 2 plan item.
+- **Regional innovation agencies** (Medical Valley EMN, Lyonbiopôle, Toscana Life Sciences, OBN, ACMIT, Medilink Midlands, Health Cluster Portugal, Corallia Greece, etc.) — Tier 2.
+- **University TTOs not yet hit** (Oxford, Cambridge, Fraunhofer Venture, Max-Planck, Politecnico Milano/Torino, KTH, NTNU, BME Hungary, AGH Krakow, etc.) — Tier 2.
+- **EUDAMED / Notified Body certificate searches** — Tier 2, regulatory-grade but unwieldy.
+- **EPO/WIPO patent mining**, **Dealroom/Tracxn paid-tier export**, **LinkedIn Sales Navigator manual filter** — Tier 3.
+- **CATROBOTICS / SPECTARIS Mitglieder / Biocat Salesforce directory** — pass-3 agent 12 reported these still gated to its sandbox; the same companies are likely visible in Orbis/Tracxn paid tiers.
+- **Cross-passes fuzzy-name dedup** (e.g., "Endotics" / "Era Endoscopy", "Idrogenet" / "Gloreha", Haventure-merger collapse) — still owed; current dedup is exact-normalized-name only.

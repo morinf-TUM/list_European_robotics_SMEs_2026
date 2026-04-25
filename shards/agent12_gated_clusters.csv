@@ -1,0 +1,15 @@
+company,country,sub_domain,website,email,email_type,sme_likely,source_url,notes,confidence
+Demcon Medical Robotics,NL,medical-robotics-development,https://demcon.com,,,No,https://medtechtwente.nl/en/focus-areas/health-robotics/,Mechatronic medical-robotics arm of Demcon group; Twente; group ~1000+ staff so flagged not-SME but unit develops surgical/rehab robots,medium
+Hankamp Gears,NL,precision-drives-medical,https://www.hankampgears.com,,,Yes,https://medtechtwente.nl/en/focus-areas/health-robotics/,Twente component supplier; precision gears/drives used in wearable medical robotics programs,low
+Gable Systems,NL,health-robotics,https://gable.systems,,,Yes,https://medtechtwente.nl/en/focus-areas/health-robotics/,Listed by MedTech Twente in Health Robotics focus area; verify scope manually,low
+Focal Meditech,NL,assistive-arm-support,https://www.focalmeditech.com,,,Yes,https://medtechtwente.nl/en/focus-areas/health-robotics/,Tilburg; active wheelchair-mounted arm-support orthoses; Gowing dynamic support,high
+Emovo Care,CH,robotic-hand-orthosis,https://emovocare.com,,,Yes,https://bioalps.org/organizations/emovo-care-sa/,EPFL spin-off; portable artificial-tendon hand orthosis for stroke/MS,high
+Ophthorobotics,CH,robotic-intravitreal-injection,https://ophthorobotics.com,,,Yes,https://www.venturelab.swiss/Ophthorobotics,ETH Zurich spin-off; automated intravitreal injection robot,high
+Comphya,CH,active-implantable-neurostim,https://comphya.com,,,Yes,https://bioalps.org/organizations/,EPFL spin-off; CaverSTIM active implantable nerve stimulator post-prostatectomy,high
+Neurosoft Bioelectronics,CH,active-brain-implant,https://www.neurosoft-bio.com,,,Yes,https://bioalps.org/organizations/neurosoft-bioelectronics/,Geneva EPFL/Wyss spin-off; soft ECoG implant with sensing and stimulation,high
+VirtualiSurg,FR,surgical-training-haptics,https://virtualisurg.com,,,Yes,https://www.medicen.org/en/our-network/,Paris; SurgiSim VR with haptic actuator hardware for surgical training,medium
+MintNeuro,GB,active-implantable-neurostim,https://mintneuro.com,,,Yes,https://www.imperial.ac.uk/news/242172,Imperial College London spin-out; ultra-low-power neural implants with stimulation,high
+Cypromed,NO,powered-FES-walking-aid,https://cypromed.no,,,Yes,https://www.norwayhealthtech.com/members/,Ottestad NO; develops/distributes WalkAide FES walking aid + motorised grip aids,medium
+Interventional Systems,AT,percutaneous-needle-robot,https://www.interventional-systems.com,,,Yes,https://www.surgicalroboticstechnology.com/company/interventional-systems/,Kitzbuhel AT; Micromate miniature image-guided needle robot; FDA cleared; offices DE/PT,high
+ZoraBots,BE,humanoid-elderly-care,https://zorarobotics.be,,,Yes,https://www.agoria.be/en/find-a-member/,Ostend; Zora NAO-based humanoid for elderly/paediatric care; deployed in 200+ facilities,medium
+MC Health Tech,ES,electrotherapy-device,https://mchealthtech.com,,,Yes,https://barcelonahealthhub.com/en/bhh-members/,Barcelona; non-invasive physiotherapy electrotherapy device - borderline active actuation,low
